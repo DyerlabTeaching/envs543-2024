@@ -1,28 +1,34 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
-book:
+website:
   title: "ENVS 543 Fall Semester 2024"
-  author: "Rodney J. Dyer"
-  date: "12/3/2024"
-  chapters:
-    - index.qmd
-    - markdown_narrative.qmd
-    - basic_data_narrative.qmd
-    - containers_narrative.qmd
-    - tidyverse_narrative.qmd
-    - functions_narrative.qmd
-    - classic_graphics_narrative.qmd
-    - ggplot_narrative.qmd
-    - points_narrative.qmd
-    - raster_narrative.qmd
-    - text_narrative.qmd
-    - factors_narrative.qmd
-    - correlation_narrative.qmd
-    - regression_narrative.qmd
-    - aov_narrative.qmd
-    - counting_stats_narrative.qmd
+  navbar: 
+    left:
+    - text: Basics
+      menu: 
+      - markdown_narrative.qmd
+      - basic_data_narrative.qmd
+      - containers_narrative.qmd
+      - tidyverse_narrative.qmd
+      - functions_narrative.qmd
+      - text_narrative.qmd
+      - factors_narrative.qmd
+    - text: Graphics
+      menu: 
+      - classic_graphics_narrative.qmd
+      - ggplot_narrative.qmd
+    - text: Spatial
+      menu:
+      - points_narrative.qmd
+      - raster_narrative.qmd
+    - text: Analyses
+      menu: 
+      - correlation_narrative.qmd
+      - regression_narrative.qmd
+      - aov_narrative.qmd
+      - counting_stats_narrative.qmd
 
 format:
   html:
