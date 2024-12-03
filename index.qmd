@@ -41,10 +41,10 @@ This course is designed as a sequence of individual, stand-alone modules. Each i
 | Data Types & Containers | Understanding the fundamental data types and containers within R and how to import, work with easily, and export raw data. | 1, 2 |
 | Tidyverse | Data manipulation. Like a boss. | 1, 2 |
 | Basic Graphics | Normal graphics built into the R system. | 2, 3 |
-| Graphics that DON’T suck | Hello publication quality graphics, using the grammar of graphics approach | 2,3 |
+| Graphics that DON’T suck | Hello publication quality graphics, using the grammar of graphics approach | 2, 3 |
 | Points, Lines, & Polygons | Spatial data in vector format vectors | 3, 5 |
 | Raster Data | Continuously distributed spatial data | 3, 5 |
-| Statistical Confidence | Base understanding of statistical inferences and the properties of sampled data | 1,2,4 |
+| Statistical Confidence | Base understanding of statistical inferences and the properties of sampled data | 1, 2, 4 |
 | Binomial Inferences | Analyses based upon expectations. | 4 |
 | Categorical\~f(Categorical) | Contingency table and categorical count data | 4 |
 | Continuous\~f(Categorical) | Analysis of Variance (or equality of means) | 4 |
