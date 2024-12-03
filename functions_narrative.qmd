@@ -4,6 +4,8 @@ format: html
 editor: source
 ---
 
+![](media/conjunction_junction.png)
+
 ```{r startup, include=FALSE}
 library( knitr )
 library( tidyverse )

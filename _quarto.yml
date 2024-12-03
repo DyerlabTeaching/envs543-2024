@@ -1,8 +1,9 @@
 project:
   type: book
+  output-dir: docs
 
 book:
-  title: "ENVS543.2024"
+  title: "ENVS 543 Fall Semester 2024"
   author: "Rodney J. Dyer"
   date: "12/3/2024"
   chapters:
@@ -17,9 +18,11 @@ book:
     - points_narrative.qmd
     - raster_narrative.qmd
     - text_narrative.qmd
-
-
-bibliography: references.bib
+    - factors_narrative.qmd
+    - correlation_narrative.qmd
+    - regression_narrative.qmd
+    - aov_narrative.qmd
+    - counting_stats_narrative.qmd
 
 format:
   html:

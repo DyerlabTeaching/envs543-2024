@@ -4,13 +4,15 @@ format: html
 editor: visual
 ---
 
+![](media/teng-yuhong-qMehmIyaXvY-unsplash.jpg)
+
 > Data needs to be contained within objects so that we can examine, manipulate, sort, analyze, and communicate about it. In this topic, we examine some of the more basic
 
 ## Vectors
 
-Vectors are the most basic data container in `R`. They *must* contain data of the exact same type and are constructed using the `combine()` function, which is abbreviated as `c()` because good programmers are lazy programmers. [^1]
+Vectors are the most basic data container in `R`. They *must* contain data of the exact same type and are constructed using the `combine()` function, which is abbreviated as `c()` because good programmers are lazy programmers. [^containers_narrative-1]
 
-[^1]: The more lines of code that you write, the more likely there will be either a grammatical error (easier to find) or a logical one (harder to find).
+[^containers_narrative-1]: The more lines of code that you write, the more likely there will be either a grammatical error (easier to find) or a logical one (harder to find).
 
 Here is an example with some numbers.
 

@@ -3,20 +3,22 @@ title: "Non-Parametric & Counting Statistics"
 format: html
 ---
 
+![](media/AnalysisMatrix.png)
+
+
 ```{r}
 library( tidyverse )
 library( forcats )
 theme_set( theme_minimal() ) 
 ```
 
-
 ## Counting, or 'Non-Parametric' Statistics
 
-To date, we've been talking about the kinds of statistical approaches we use based upon the kind of data that we have for predictors and responses.  Keeping it really simple, the graphic below attempts to capture this dynamic.
+To date, we've been talking about the kinds of statistical approaches we use based upon the kind of data that we have for predictors and responses. Keeping it really simple, the graphic below attempts to capture this dynamic.
 
-![](media/AnalysisMatrix.png)
 
-In this display, counting statistics are those that have `factor` data for both predictors and responses.  However, the methods that we use in this quadrant, like $\chi^2$ tests, are a small fraction of available methods that we can classify as *NonParametric* statistics.  
+
+In this display, counting statistics are those that have `factor` data for both predictors and responses. However, the methods that we use in this quadrant, like $\chi^2$ tests, are a small fraction of available methods that we can classify as *NonParametric* statistics.
 
 Non-parametric counting statistics are essential tools in data analysis because they provide robust methods for understanding data without making strong assumptions about the underlying distribution. Many traditional statistical methods rely on parametric assumptions, such as normality, homoscedasticity, or linearity. However, real-world data often violate these assumptions due to skewness, outliers, or categorical variables. Non-parametric methods excel in these scenarios by leveraging the rank or order of data rather than its precise values, making them ideal for analyzing ordinal data, small sample sizes, or data sets with unknown distributions.
 
@@ -26,17 +28,16 @@ So let's start simple and I'll walk through a set of these kinds of models and h
 
 ## The Binomial Test
 
-We've discussed the Binomial as part of the underlying generative functions for Bayesian Statistics already, but let's revisit it for just a moment to get more specific on its general status.  As a reminder, this is a test where the outcomes can be classified into either "Group A" or "Group B" (a 2-level factor in `R`).
-
+We've discussed the Binomial as part of the underlying generative functions for Bayesian Statistics already, but let's revisit it for just a moment to get more specific on its general status. As a reminder, this is a test where the outcomes can be classified into either "Group A" or "Group B" (a 2-level factor in `R`).
 
 ### Assumptions
 
 The binomial test assumes:
 
-1. The $n$ samples are mutually independent.  
-2. Each sample has an underlying probability, $p$, of being classified in "Group A" and a probability of $1-p$ of being assigned to "Group B".
+1.  The $n$ samples are mutually independent.\
+2.  Each sample has an underlying probability, $p$, of being classified in "Group A" and a probability of $1-p$ of being assigned to "Group B".
 
-The test statistic for this analysis is the number of values observed in "Group A" as a count.  Because we are testing for the value of $p$ (or our confidence in the range of values it can assume), the null hypothesis is:
+The test statistic for this analysis is the number of values observed in "Group A" as a count. Because we are testing for the value of $p$ (or our confidence in the range of values it can assume), the null hypothesis is:
 
 $H_O: p = \hat{p}$
 
@@ -46,7 +47,7 @@ In `R`, we can test this using the `binom.test()` function, whose signature is:
 
 You can either give the function a single values for `x` and `n` or you can have `x` be a 2-element vector and skip the `n` part.
 
-Borrowing from a previous example, let's assume we are sampling fish in the James River.  The hypothesis is that the frequency of catfish is 
+Borrowing from a previous example, let's assume we are sampling fish in the James River. The hypothesis is that the frequency of catfish is
 
 $$
 p_{catfish} = \frac{N_{catfish}}{N_{catfish} + N_{other}} = \frac{37}{50} \approx 0.74
@@ -56,7 +57,7 @@ So, if we were to go out and do some more sampling, the null hypotehsis would be
 
 $H_O: p_{catfish} = 0.74$
 
-Let's assume you just got back from a great sampling day and found the following data.  
+Let's assume you just got back from a great sampling day and found the following data.
 
 ```{r}
 catfish <- 52
@@ -65,12 +66,10 @@ non_catfish <- 47
 
 To test if this sampling exercise is consistent with the previous assumption of a 74% catfish presence, we do:
 
-
 ```{r}
 samples <- c( catfish, non_catfish )
 p_catfish <- 0.74
 ```
-
 
 ```{r}
 df <- data.frame( Counts = c( samples, 0.74 * sum(samples), ( (1-0.74) * sum(samples) )),
@@ -82,27 +81,24 @@ ggplot( df,
   geom_bar( position="dodge", stat="identity") 
 ```
 
-
-
 ```{r}
 fit <- binom.test(x=samples, p = p_catfish )
 fit 
 ```
 
-Whose results suggest that $p_{catfish} \ne 0.74$ and we reject the null hypothesis.  Our data subbest, from the samples we provided, that the observed $p_{catfish}$ falls within the interval of `r format(fit$conf.int[1], digits=3)` - `r format(fit$conf.int[2], digits=3)`.
+Whose results suggest that $p_{catfish} \ne 0.74$ and we reject the null hypothesis. Our data subbest, from the samples we provided, that the observed $p_{catfish}$ falls within the interval of `r format(fit$conf.int[1], digits=3)` - `r format(fit$conf.int[2], digits=3)`.
 
 For examples with more than two "Group"s, there is a multinomial test as well, but the function is not one built into R and you'll want to check out the [Multinomial](https://search.r-project.org/CRAN/refmans/EMT/html/multinomial.test.html) package for that function.
 
-
 ## Contingency Tables
 
-Contingency tables are another counting approach, where your data can be classified into one or more categories. Often it is taken as a comparison between populations.  So, in keeping with our fish theme, let's assume we went to another river and did another sampling run on catfish.  In general, we are not limited to "Group A" vs "Group B" but we will use it for continuity here.  
+Contingency tables are another counting approach, where your data can be classified into one or more categories. Often it is taken as a comparison between populations. So, in keeping with our fish theme, let's assume we went to another river and did another sampling run on catfish. In general, we are not limited to "Group A" vs "Group B" but we will use it for continuity here.
 
 Our sampling can be categorized as follows for the two populations of samples we've collected.
 
 ![](media/ContingencyTable.png)
 
-The values above are Observerd counts of observations in each pair of categories.  Every fish is talled into the grouping (catfish vs not) and the location it was sampled (population 1 vs population 2).  The total number of sampels at each population is $n_1$ (in the data it was $n_1 =$`r sum(samples)`) and $n_2$ (to be shown below) and the total number of samples that are catfish is $C_1 = O_{11} + O_{21}$ and not catfish as $C_2$ which also happens to be $N - C_1$ (for completeness).
+The values above are Observerd counts of observations in each pair of categories. Every fish is talled into the grouping (catfish vs not) and the location it was sampled (population 1 vs population 2). The total number of sampels at each population is $n_1$ (in the data it was $n_1 =$`r sum(samples)`) and $n_2$ (to be shown below) and the total number of samples that are catfish is $C_1 = O_{11} + O_{21}$ and not catfish as $C_2$ which also happens to be $N - C_1$ (for completeness).
 
 Again, here we have 2 rows and 2 columns, but this can be extended to larger numbers of groupings and sampling population as necessary and the analysis is the same.
 
@@ -110,25 +106,23 @@ In this simple case, the null hypothesis is **not** about the exact value of $p_
 
 $H_O: p_1 = p_2$
 
-I'll expand this to cases beyond a 2x2 contingency below.
--
+## I'll expand this to cases beyond a 2x2 contingency below.
 
-### The Assumptions 
+### The Assumptions
 
 The assumptions for a contingency table analysis are:
 
-1. Each sampling is a random sample.  
-2. Any pair of samples are mutually independent.  
-3. Each sample is unambiguously categorized into one, and only one, Grouping and Replicate.
-
+1.  Each sampling is a random sample.\
+2.  Any pair of samples are mutually independent.\
+3.  Each sample is unambiguously categorized into one, and only one, Grouping and Replicate.
 
 To run this test in `R` we use the `chisq.test()` function, whose signature is as follows:
 
 ![](media/chisq_signature.png)
 
-Where for our example, we will use it by passing a 2x2 matrix of observations as `x`.  Let's say I went out to another site and did 50 more samples and found 32 catfish.  
+Where for our example, we will use it by passing a 2x2 matrix of observations as `x`. Let's say I went out to another site and did 50 more samples and found 32 catfish.
 
-Here is a matrix with these numbers.  I'm going to decorate it with row and column labels for clarity.
+Here is a matrix with these numbers. I'm going to decorate it with row and column labels for clarity.
 
 ```{r}
 Observed <- matrix( c(52, 47, 32, 18), nrow=2, byrow = TRUE)
@@ -137,8 +131,7 @@ colnames( Observed ) <- c("Catfish", "Other")
 Observed
 ```
 
-
-Our expectations are based on the $p_{catfish} = 0.74$ and can be used to create an Expected value for each of the cells in the matrix above.  For example, the expected value for the number of catfish from Population 1 would be $n_1 * 0.74$ and for non-catfish would be $(1-0.74) * n_1$.  We can do the same for the second site.
+Our expectations are based on the $p_{catfish} = 0.74$ and can be used to create an Expected value for each of the cells in the matrix above. For example, the expected value for the number of catfish from Population 1 would be $n_1 * 0.74$ and for non-catfish would be $(1-0.74) * n_1$. We can do the same for the second site.
 
 ```{r}
 n1 <- 52 + 47
@@ -153,10 +146,10 @@ colnames( Expected ) <- c("Catfish", "Other")
 Expected
 ```
 
-So, in some sense, we set the underlying probability of catfish in either locale to $0.74$.  If the observed values are close to the expected, then the data would be consistent with what is expected from the underlying hypothesis.  If they are not close, then the data data are deviating. The amount of deviation is what we will be using as a test statistic here and it is a measure of:
+So, in some sense, we set the underlying probability of catfish in either locale to $0.74$. If the observed values are close to the expected, then the data would be consistent with what is expected from the underlying hypothesis. If they are not close, then the data data are deviating. The amount of deviation is what we will be using as a test statistic here and it is a measure of:
 
-1. How far apart $O_{xy}$ is from $E_{xy}$, 
-2. Standardized by the magnitude of the $E_{xy}$.
+1.  How far apart $O_{xy}$ is from $E_{xy}$,
+2.  Standardized by the magnitude of the $E_{xy}$.
 
 Giving us the test statistic:
 
@@ -164,14 +157,14 @@ $$
 T = \sum_{i=1}^r\sum_{j=1}^c\frac{(O_{ij} - E_{ij})^2}{E_{ij}}
 $$
 
-The subscripts account for the number of rows ($r$) and columns ($c$) for any arbitrary sized table beyond the 2x2 example we have here.   We can estimate the test statistic in R direclty, as:
+The subscripts account for the number of rows ($r$) and columns ($c$) for any arbitrary sized table beyond the 2x2 example we have here. We can estimate the test statistic in R direclty, as:
 
 ```{r}
 T <- sum(  (Observed - Expected)^2 / Expected )
 T
 ```
 
-This test statistic is expected to be equivalent to a $\Chi^2$ statistic with $(r-1)(c-1)$ degrees of freedom.  We haven't really estimated this directly yet, so here is how you'd figure out the probability of this test statistic.
+This test statistic is expected to be equivalent to a $\Chi^2$ statistic with $(r-1)(c-1)$ degrees of freedom. We haven't really estimated this directly yet, so here is how you'd figure out the probability of this test statistic.
 
 ```{r}
 alpha <- 0.05
@@ -180,7 +173,7 @@ critical.value <- qchisq( p ,1)
 critical.value
 ```
 
-You've probably seen this value before; it is a common one that we use in teaching basic Biology courses when we do Mendel's pea phenotypes.  So, the test statistic is $T =$`r T` and the critical value is `r critical.value`, so we would *Reject H_O* that the fraction of catfish/not-catfish from *Population 1* is not the same as observed in *Population 2*.
+You've probably seen this value before; it is a common one that we use in teaching basic Biology courses when we do Mendel's pea phenotypes. So, the test statistic is $T =$`r T` and the critical value is `r critical.value`, so we would *Reject H_O* that the fraction of catfish/not-catfish from *Population 1* is not the same as observed in *Population 2*.
 
 But, we are still stuck with the $\alpha = 0.05$ issue and we'd probably rather have the actual p-value for the observed Test statistic, $T$.
 
@@ -189,7 +182,7 @@ p.value <- 1.0 - pchisq( T, df=1 )
 p.value
 ```
 
-Notice I've used the `qschisq` function to get hte critcal value for some probability and the `pchisq` to the probability associated with an observed value.  Every distribution has `p*` and `q*` functions associated with them and can be used to find critical values and probabilities if you need to do it manually.
+Notice I've used the `qschisq` function to get hte critcal value for some probability and the `pchisq` to the probability associated with an observed value. Every distribution has `p*` and `q*` functions associated with them and can be used to find critical values and probabilities if you need to do it manually.
 
 In the real world, you'll probably be taking the data from a larger `data.frame` object where you collected additional data. Here is a sample, where the species and location are factors.
 
@@ -201,6 +194,7 @@ df <- data.frame( Sample = 1:149,
                   Measurement = rnorm(149,mean=12, sd=3))
 summary( df )
 ```
+
 ```{r}
 head(df)
 ```
@@ -211,20 +205,17 @@ It is easy to grab the tabular data, and configure it as we did above using the 
 table( df$Site, df$Species )
 ```
 
-There are a few caveats that we need to make here.  First, this appraoch requires that we have a sufficient number of observations in each of the cells.  The longest running recommendation comes form Cochran[^1], who suggested that any time you have an $E_{ij} \le 1$ or if more than 20% of the $E_{ij} \le 5$, there may be some issues with statistical power and the approximation for the $\Chi^2$ statistic may be poor.  In those cases, perhaps a permutation approach would be more appropriate.  
+There are a few caveats that we need to make here. First, this appraoch requires that we have a sufficient number of observations in each of the cells. The longest running recommendation comes form Cochran[^counting_stats_narrative-1], who suggested that any time you have an $E_{ij} \le 1$ or if more than 20% of the $E_{ij} \le 5$, there may be some issues with statistical power and the approximation for the $\Chi^2$ statistic may be poor. In those cases, perhaps a permutation approach would be more appropriate.
 
-
+[^counting_stats_narrative-1]: Cochran, W.G. (1952) The $\Chi^2$ test of goodness of fit. *Annals of Mathematical Statistics*, 23, 315-345.
 
 ## NonParametric Eqivallent Approaches
 
 I'm going to use a couple of examples here to show how we can use counting statistics and ranks for methods where we intended to use parametric approaches like a t-test, correlation, regression, and analysis of variance but the data were not suitable for those methods.
 
-
-
-
 ### Spearman Test for Ranked Correlation
 
-When we discussed correlation data (e.g., continuous predictors and response variables), I did point out that there was another kind of correlation statistic that uses ranks (the `mode="spearman"`) instead of the raw data (the Pearson-Product Moment approach which is the default).  As we saw before, there is an option in the normal `cor.test` function that allows you to use a rank-based analysis instead of the normal Pearson Product-Moment approach.  
+When we discussed correlation data (e.g., continuous predictors and response variables), I did point out that there was another kind of correlation statistic that uses ranks (the `mode="spearman"`) instead of the raw data (the Pearson-Product Moment approach which is the default). As we saw before, there is an option in the normal `cor.test` function that allows you to use a rank-based analysis instead of the normal Pearson Product-Moment approach.
 
 ![](media/cor.test_signature.png)
 
@@ -232,11 +223,9 @@ This approach, basically, orders the magnitude of both predictor and response an
 
 For brevity, I'll not give an example and have you look back at the correlation lecture for more information.
 
+## Non-Parametric Regression
 
-## Non-Parametric Regression 
-
-There are a few different methods for estimating linear regression models via non-parametric approaches.  We've seen one common approach whenever we used the `stat_smooth()` function in `ggplot()`.  By default, it uses the `loess()` local smoother approach.
-
+There are a few different methods for estimating linear regression models via non-parametric approaches. We've seen one common approach whenever we used the `stat_smooth()` function in `ggplot()`. By default, it uses the `loess()` local smoother approach.
 
 ```{r}
 iris |> 
@@ -245,12 +234,11 @@ iris |>
   stat_smooth()
 ```
 
-
-In a `lm()`, the goal is to use least cost approaches to minimize the error variance across all the data simultaneously.  
+In a `lm()`, the goal is to use least cost approaches to minimize the error variance across all the data simultaneously.
 
 ![](media/lm_error.png)
 
-### **LO**cal regr**ESS**ion 
+### **LO**cal regr**ESS**ion
 
 The `loess()` approach looks at a local window for estimating the formula of the line along with a moderatly high-dimensional polynomial.
 
@@ -258,7 +246,7 @@ $$
 \hat{y} = \hat{\beta}_O^{x} + \hat{\beta}_1^{x}x_i
 $$
 
-The function has a signature similar to that we saw in `lm()` for normal [regression](https://dyerlabteaching.github.io/Regression/narrative.html).  
+The function has a signature similar to that we saw in `lm()` for normal [regression](https://dyerlabteaching.github.io/Regression/narrative.html).
 
 ![](media/loess_signature.png)
 
@@ -316,7 +304,6 @@ for(s in c(0.1, 0.2, 0.3, 0.4)){
 }
 ```
 
-
 ### Fitting A loess Model
 
 ```{r}
@@ -350,7 +337,7 @@ rbind( loess.spans( iris$Sepal.Length, iris$Sepal.Width, s = 0.2 ),
   geom_line( aes(color = span ), lwd=1)  
 ```
 
-One method suggested to figure out what an optimal value of `span` would be is based upon a generalized cross validation (GCV) approach.  
+One method suggested to figure out what an optimal value of `span` would be is based upon a generalized cross validation (GCV) approach.
 
 $$
 s = \frac{ \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_{i,s})^2 }{ (1 - \frac{v_s}{n} )^2 }
@@ -382,26 +369,23 @@ rbind( loess.gcv( iris$Sepal.Length, iris$Sepal.Width ),
   geom_line() 
 ```
 
-
 ## Other Regression Approaches
 
-There are several additional approaches including Kernel Regression (e.g., [Nadaraya & Watson's Kernel Smoother](https://bookdown.org/egarpor/PM-UC3M/npreg-kre.html)) and Local Averaging (e.g., [Friedman's Super Smoother](http://fmwww.bc.edu/repec/bocode/s/supsmooth_doc.pdf)).  If you need to perform a regression approach, please explore the benefits and challenges with these alternative methods before deciding on which one to use.
-
-
+There are several additional approaches including Kernel Regression (e.g., [Nadaraya & Watson's Kernel Smoother](https://bookdown.org/egarpor/PM-UC3M/npreg-kre.html)) and Local Averaging (e.g., [Friedman's Super Smoother](http://fmwww.bc.edu/repec/bocode/s/supsmooth_doc.pdf)). If you need to perform a regression approach, please explore the benefits and challenges with these alternative methods before deciding on which one to use.
 
 ### Mann-Whitney Test For the Equivallence of Two Means
 
-So, this is an extension of the `t-test` for the equivalence of the mean values of two data sets (e.g., $H_O: \bar{x} = \bar{y}$).  This assume that two sets of data are independently sampled and tests for the equality of the samples based upon ranks of the data in each set.
+So, this is an extension of the `t-test` for the equivalence of the mean values of two data sets (e.g., $H_O: \bar{x} = \bar{y}$). This assume that two sets of data are independently sampled and tests for the equality of the samples based upon ranks of the data in each set.
 
 #### Assumptions
 
 This approach has the following assumptions:
 
-1. Both sets of data are random samples from their respective population.  
-2. Each of the populations are similarly independent.
-3. The measurement scale for each variable is at least ordinal (e.g., you can put them in order).  
+1.  Both sets of data are random samples from their respective population.\
+2.  Each of the populations are similarly independent.
+3.  The measurement scale for each variable is at least ordinal (e.g., you can put them in order).
 
-For this test, I'm just going to use the *Motor Trends* car data we've seen before and look at the mileage of cars that have a manual vs an automatic transmission.  Here is the distribution of the data in a density plot.
+For this test, I'm just going to use the *Motor Trends* car data we've seen before and look at the mileage of cars that have a manual vs an automatic transmission. Here is the distribution of the data in a density plot.
 
 ```{r}
 mtcars |>
@@ -414,7 +398,7 @@ data |>
   geom_boxplot( notch=TRUE )
 ```
 
-To test this, we use the Wilcoxon Rank Sum test.  The signature of this test is:
+To test this, we use the Wilcoxon Rank Sum test. The signature of this test is:
 
 ![](media/Wilcoxon_signature.png)
 
@@ -431,11 +415,9 @@ As for other analyses, the object returned has a number of elements that may be 
 names(fit)
 ```
 
-
-
 ### Kruskal-Wallis Test for Equivallence of Several Means
 
-The Kruskal-Wallis test is an extension on the Wilcoxon test in the same way that the `aov()` is an extension of the `t-test()`.  The approach is again based upon ranks. Here is an example data set we've used once before based on air quality measured across five different months.
+The Kruskal-Wallis test is an extension on the Wilcoxon test in the same way that the `aov()` is an extension of the `t-test()`. The approach is again based upon ranks. Here is an example data set we've used once before based on air quality measured across five different months.
 
 ```{r}
 airquality |>
@@ -453,28 +435,19 @@ ggplot( data, aes(Month, Ozone) ) +
   geom_boxplot(notch=TRUE)
 ```
 
-To test for the equality of ozone across months, we use `kruskal.test()` 
+To test for the equality of ozone across months, we use `kruskal.test()`
 
 ```{r}
 fit <- kruskal.test( Ozone ~ Month, data=data )
 fit 
 ```
+
 And again, the object returned has the relevant parameters for inclusion in the text of your manuscript.
 
 ```{r}
 names(fit)
 ```
 
-
-
 ## Summary
 
-These methods should get you going for pure counting statistics ($\Chi^2$) or for replacements to parametric approaches when you find that your data do not conform to their expectations.  There is a whole universe of non-parametric approaches and extensions to the methods I highlight here and I encourage you to explore these methods in the future if you have an odd set of data that needs to yield proper insights.
-
-
-
-[^1]: Cochran, W.G. (1952) The $\Chi^2$ test of goodness of fit.  *Annals of Mathematical Statistics*, 23, 315-345.
-
-
-
-
+These methods should get you going for pure counting statistics ($\Chi^2$) or for replacements to parametric approaches when you find that your data do not conform to their expectations. There is a whole universe of non-parametric approaches and extensions to the methods I highlight here and I encourage you to explore these methods in the future if you have an odd set of data that needs to yield proper insights.

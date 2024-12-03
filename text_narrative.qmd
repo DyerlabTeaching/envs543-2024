@@ -3,9 +3,11 @@ title: "Text Based Data"
 format: html
 ---
 
+![](media/bruno-martins-OhJmwB4XWLE-unsplash.jpg)
+
 ## Topic
 
-This quick section will focus on the text—or, more aptly, `character`—data type.  We commonly run across this as narrative or designations such as site names, locations, other bits of information that we need to 
+This quick section will focus on the text—or, more aptly, `character`—data type. We commonly run across this as narrative or designations such as site names, locations, other bits of information that we need to
 
 ## Data Types
 
@@ -14,14 +16,14 @@ x <- "Rodney"
 y <- 'Dyer'
 ```
 
-You could use either single or double quotes to define a character type *de novo*—both work just fine.  Having two of them is really helpful when you want to use one of the quote symbols inside the data.
+You could use either single or double quotes to define a character type *de novo*—both work just fine. Having two of them is really helpful when you want to use one of the quote symbols inside the data.
 
 ```{r}
 z <- 'Bob Marley once said, "It is a foolish dog that barks at a passing bird"'
 z
 ```
 
-But notice that when you print it out to the terminal (or in the output to your Quarto chunck), it uses the `backslash-double quote` format.  It also show up if you use `print`
+But notice that when you print it out to the terminal (or in the output to your Quarto chunck), it uses the `backslash-double quote` format. It also show up if you use `print`
 
 ```{r}
 print(z)
@@ -33,7 +35,7 @@ But not when you `cat` it:
 cat(z)
 ```
 
-This is called *escaping* a special character.  And it is a valid way to embed a quoting character into a sequence.
+This is called *escaping* a special character. And it is a valid way to embed a quoting character into a sequence.
 
 ```{r}
 w <- "\"Learning R is Fun,\" said Rodney."
@@ -42,32 +44,29 @@ cat(w)
 
 There are other special characters that you will run across such as:
 
-- The `Tab` character, `\t` 
-- The `New Line` character `\n`
-- The `Return` character `\r`.  This is becoming obsolete, in the "olden days" it was used with new line when we were making a transition from the manual typewriter where if you think about the action of using a typewriter, you need to advance a line AND return the carrage—the part that makes the letters on the paper—to the beginning of the line.  That is why you sometimes see CR for on the return key.  Windows used this convention and you may run across it still form peole who use that platform as `\r\n`.  Mostly it is just yet another annoyance from some Windows software.
+-   The `Tab` character, `\t`
+-   The `New Line` character `\n`
+-   The `Return` character `\r`. This is becoming obsolete, in the "olden days" it was used with new line when we were making a transition from the manual typewriter where if you think about the action of using a typewriter, you need to advance a line AND return the carrage—the part that makes the letters on the paper—to the beginning of the line. That is why you sometimes see CR for on the return key. Windows used this convention and you may run across it still form peole who use that platform as `\r\n`. Mostly it is just yet another annoyance from some Windows software.
 
 To see more, visit `?"'"` in R.
 
-
 ## The `stringr` Library
 
-Another joy from the `tidyverse` folks is the `stringr` library that has made things a bit easier in handling string data.  As usual, there is a cheatsheet linked in the assets on this topic.
+Another joy from the `tidyverse` folks is the `stringr` library that has made things a bit easier in handling string data. As usual, there is a cheatsheet linked in the assets on this topic.
 
 ```{r}
 library( tidyverse )
 ```
 
+## The 'Verbs"
 
-## The 'Verbs" 
+When dealing with text, there are some basic `verbs` that we should recognize as fundamental actions that you'll apply across a wide variety of situations. For text data, these include:
 
-When dealing with text, there are some basic `verbs` that we should recognize as fundamental actions that you'll apply across a wide variety of situations.  For text data, these include:
-
-- `Creating` new/composite text. 
-- `Finding` content inside a string.
-- `Deleting` content within a string 
-- `Replacing` content in a string with some new character value.
-- `Manipulating` content in a string.
-
+-   `Creating` new/composite text.
+-   `Finding` content inside a string.
+-   `Deleting` content within a string
+-   `Replacing` content in a string with some new character value.
+-   `Manipulating` content in a string.
 
 ### Creating
 
@@ -78,7 +77,6 @@ paste( "This","is","fun")
 ```
 
 You can also mix-and-match different data types, as long as they can be coerced into a string type (which all data types can).
-
 
 ```{r}
 num <- 42
@@ -91,14 +89,13 @@ When we work with character data, we need to realize that from the context of in
 length(z)
 ```
 
-Even if it is made up of several characters.  If we are interested subsequences within the string, we need to ask more specifically about the string length, not the variable length.
+Even if it is made up of several characters. If we are interested subsequences within the string, we need to ask more specifically about the string length, not the variable length.
 
 ```{r}
 str_length( z )
 ```
 
 There are times when we need to paste more than a couple of individual items together.
-
 
 ```{r}
 a <- 1:10
@@ -121,59 +118,60 @@ A `stringr` version is also available—with fewer keystrokes!
 str_c( a, collapse=", " )
 ```
 
-and 
+and
 
 ```{r}
 str_c( a,b,c)
 str_c( a,b,c, sep="-")
 ```
 
-### Finding 
+### Finding
 
-Finding text may be done in a few ways.   
+Finding text may be done in a few ways.
 
 ```{r}
 cat(z)
 ```
 
-
 We can ask if:
 
-1. A particular sequence of characters exist in the string (`TRUE/FALSE`).
+1.  A particular sequence of characters exist in the string (`TRUE/FALSE`).
+
 ```{r}
 str_detect(z, "Marley")
 str_detect(z, "marley") # case sensitive
 ```
 
-2. We can ask for the number of times a sequences shows up in a string.
+2.  We can ask for the number of times a sequences shows up in a string.
+
 ```{r}
 str_count(z, "a")
 ```
 
-3. We can ask where the first occurance of a subsequence of characters starts at:
+3.  We can ask where the first occurance of a subsequence of characters starts at:
+
 ```{r}
 str_locate( z, "dog")
 ```
 
-4. We can find all occurences of a substring.
+4.  We can find all occurences of a substring.
+
 ```{r}
 str_locate_all( z, "a")
 ```
 
-5. If we know the location of a substring, you can extract it.  Here I use the negative for the second index, which is treated as "second from the end" of the string.
+5.  If we know the location of a substring, you can extract it. Here I use the negative for the second index, which is treated as "second from the end" of the string.
 
 ```{r}
 str_sub(z, 24, -2)
 ```
 
-
-6. If we have several character objects in a vector, we can find the subset that contains a specific sequence.
+6.  If we have several character objects in a vector, we can find the subset that contains a specific sequence.
 
 ```{r}
 character_vec <- c(w,x,y,z)
 character_vec
 ```
-
 
 ```{r}
 str_detect( character_vec, "r")
@@ -185,10 +183,9 @@ However, it is case sensitive
 str_detect( character_vec, "R")
 ```
 
-
 ### Deleting
 
-This is an easy one, if we want to remove one (the first occurence of) an item, 
+This is an easy one, if we want to remove one (the first occurence of) an item,
 
 ```{r}
 str_remove(z,"dog")
@@ -206,9 +203,7 @@ We can also remove compoennts by truncation
 str_trunc( character_vec , 20)
 ```
 
-
 ### Replacing
-
 
 There are times when we are wanting to take some component within a string and replace it with another one—independent of the location of the item to be replaced within the string.
 
@@ -216,65 +211,56 @@ There are times when we are wanting to take some component within a string and r
 cat( str_replace(z, "Bob Marley", "Rodney") )
 ```
 
-
 If we do know the location (character location) and size (`str_length`) of what we are replacing, then we can use those numerical values direction.
 
 ```{r}
 str_sub(z, 1, 10)
 ```
 
+### Manipulating
 
-### Manipulating 
-
-
-1. Making the string all lower case.
+1.  Making the string all lower case.
 
 ```{r}
 str_to_lower(z)
 ```
 
-
-2. Making it all uppercase.
+2.  Making it all uppercase.
 
 ```{r}
 str_to_upper(z)
 ```
 
-3. Creating `Title Case` text.
-
+3.  Creating `Title Case` text.
 
 ```{r}
 str_to_title(z)
 ```
 
-
-4. Capitalizing it as if it were a sentence.
+4.  Capitalizing it as if it were a sentence.
 
 ```{r}
 str_to_sentence( "this is getting a bit old, isn't it?")
 ```
-
 
 ```{r}
 tmp <- str_to_sentence("rodney exclaimed, \"but it doesn't know about internal quoted sentence fragments!\" and then sat down.") 
 cat(tmp)
 ```
 
-
 # A Practical Example: Text Parsing
- 
-::: {.callout-important title="Practical Problem"}
 
-You are working on curriculum at VCU and need to generate a `data.frame` of courses that have a columns for `Program`, `Course Number`, `Course Title`, and `Credit Hours`. 
+::: {.callout-important title="Practical Problem"}
+You are working on curriculum at VCU and need to generate a `data.frame` of courses that have a columns for `Program`, `Course Number`, `Course Title`, and `Credit Hours`.
 
 The raw data you have is the university bulletin.
 :::
 
 ## Regular Expressions
 
-A regular expression, or *regex* is a concise language used for detecting and describing patterns found in language.  An entire course could be taught on the use of *regex* but here we'll only spend enough time on it so that you know some kind of magic exists in the universe and can explore it if you need to in the future.
+A regular expression, or *regex* is a concise language used for detecting and describing patterns found in language. An entire course could be taught on the use of *regex* but here we'll only spend enough time on it so that you know some kind of magic exists in the universe and can explore it if you need to in the future.
 
-For this example, I'm going to use some text data that I have been playing with regarding curriculum development.  
+For this example, I'm going to use some text data that I have been playing with regarding curriculum development.
 
 ```{r}
 #| eval: false 
@@ -288,7 +274,6 @@ read_lines( url ) -> envs
 library( readr )
 envs <- read_lines("data/ENVSclasses.txt")
 ```
-
 
 This goes out and grabs the data, and reads it in as a vector of type character.
 
@@ -304,40 +289,40 @@ head(envs,17)
 
 There are a couple of things to notice:
 
-1. The lines are short and the entry for each course is spread across several lines.  
-2. Each course has a 4-letter code, a 3-digit number, a title, and then ends with the number of hours for the class.
-3. There are five lines necessary to describe ENVS 101 but six for ENVS 105.
-4. Line 11 appears to be a page number and page heading and not part of any course description.
+1.  The lines are short and the entry for each course is spread across several lines.\
+2.  Each course has a 4-letter code, a 3-digit number, a title, and then ends with the number of hours for the class.
+3.  There are five lines necessary to describe ENVS 101 but six for ENVS 105.
+4.  Line 11 appears to be a page number and page heading and not part of any course description.
 
-Let's say we wanted to extract some information about the course number, name, and number of hours from these data.  This subset of data only has `r length(envs)` line of text but if we were looking at all the courses at VCU, we would be faced with 25,945 lines of text!  It could be done by hand but... that does not scale too well and I've got a lot better things to do than spend a year working on this simple task.
-
+Let's say we wanted to extract some information about the course number, name, and number of hours from these data. This subset of data only has `r length(envs)` line of text but if we were looking at all the courses at VCU, we would be faced with 25,945 lines of text! It could be done by hand but... that does not scale too well and I've got a lot better things to do than spend a year working on this simple task.
 
 ### Matching
 
-Let's start by matching.  Let's look at what we did above and see if there are any tools we can use.
+Let's start by matching. Let's look at what we did above and see if there are any tools we can use.
 
-We do know that `str_detect()` will give us a `TRUE/FALSE` for any match.  Let's try that and take a look at the results.
+We do know that `str_detect()` will give us a `TRUE/FALSE` for any match. Let's try that and take a look at the results.
 
 ```{r}
 idx <- str_detect(envs,"ENVS")
 head( envs[idx] )
 ```
-OK, except that line 3 isn't a title line, it just has an `ENVS` in it.  
 
-Moveover, it also assumes that we are going to only be using `ENVS` but if we look at the end of the data set, we see that the lab courses in Environmental Studies are encoded as `ENVZ` and these will be totally ignored.  Moreover, we would need to know, *a priori*, what all the program codes were before we started if we were going to take this approach.
+OK, except that line 3 isn't a title line, it just has an `ENVS` in it.
+
+Moveover, it also assumes that we are going to only be using `ENVS` but if we look at the end of the data set, we see that the lab courses in Environmental Studies are encoded as `ENVZ` and these will be totally ignored. Moreover, we would need to know, *a priori*, what all the program codes were before we started if we were going to take this approach.
 
 ```{r}
 tail( envs )
 ```
 
-Using *regex* we can define a character **pattern** to look for.  Let's start by just taking the first line of text and using that to learn about pattern matching.
+Using *regex* we can define a character **pattern** to look for. Let's start by just taking the first line of text and using that to learn about pattern matching.
 
 ```{r}
 envs101 <- envs[1]
 envs101
 ```
 
-The `stringr` library has a helper function that allows us to see what parts of a string are being matched by a specific pattern.  This function is `str_view()` and it colors and puts into angle brackets, the part that is matched. 
+The `stringr` library has a helper function that allows us to see what parts of a string are being matched by a specific pattern. This function is `str_view()` and it colors and puts into angle brackets, the part that is matched.
 
 So, looking for the characters `ENVS` looks like:
 
@@ -363,61 +348,69 @@ and if many things are matched, it will highlight each of them.
 str_view( envs101, "o")
 ```
 
+So, let's get more general and look for patterns. These patterns are encoded using square brackets.
 
-So, let's get more general and look for patterns. These patterns are encoded using square brackets. 
+1.  Matching on any digit, which is defined as `[:digit:]`.
 
-1. Matching on any digit, which is defined as `[:digit:]`.
 ```{r}
 str_view( envs101, "[:digit:]")
 ```
 
-2. Matching any non-numeric character, `[:alpha:]`
+2.  Matching any non-numeric character, `[:alpha:]`
+
 ```{r}
 str_view( envs101, "[:alpha:]")
 ```
 
-3. Matching punctuation, `[:punct:]`
+3.  Matching punctuation, `[:punct:]`
+
 ```{r}
 str_view( envs101, "[:punct:]")
 ```
 
-4. We can also specify the case of the punctuation.
+4.  We can also specify the case of the punctuation.
+
 ```{r}
 str_view( envs101, "[:lower:]")
 str_view( envs101, "[:upper:]")
 ```
 
-5. Or even spaces
+5.  Or even spaces
+
 ```{r}
 str_view( envs101, "[:space:]")
 ```
 
-
 ### Combining Matches
 
-That is helpful in some cases. But now we can start combining these things.  
+That is helpful in some cases. But now we can start combining these things.
 
-1. Let's mix a pattern and a fixed set of characters.  
+1.  Let's mix a pattern and a fixed set of characters.\
+
 ```{r}
 str_view( envs101, "[:digit:] Hours")
 ```
 
-2. How about multiple patterns.
+2.  How about multiple patterns.
+
 ```{r}
 str_view( envs101, "[:upper:][:space:][:digit:]")
 ```
 
-3. Or multiples of the same pattern.  To have the exact number of items, use a single number enclosed in curly brackets right after ther pattern.  Here we are matching 4-upper case digits.
+3.  Or multiples of the same pattern. To have the exact number of items, use a single number enclosed in curly brackets right after ther pattern. Here we are matching 4-upper case digits.
+
 ```{r}
 str_view(envs101, "[:upper:]{4}")
 ```
 
 We could also match those followed by a space and three numbers
+
 ```{r}
 str_view( envs101, "[:upper:]{4}[:space:][:digit:]{3}")
 ```
 
-4. We can generalize this a bit by asking for "zero or one" or "zero or more"—IMHO this is a terrible thing to match as a single thing.
+4.  We can generalize this a bit by asking for "zero or one" or "zero or more"—IMHO this is a terrible thing to match as a single thing.
+
 ```{r}
 str_view( envs101, "[:punct:]?")
 str_view( envs101, "[:punct:]*")
@@ -429,35 +422,38 @@ But for our purposes, we can ask for "one or more" by appending a plus sign.
 str_view( envs101, "[:digit:]+")
 ```
 
-or match to digits, punctuation, or letters (one or more) using the shorthand `.+` notation.  It is the period that matches anything and the plus that does one or more of them.
+or match to digits, punctuation, or letters (one or more) using the shorthand `.+` notation. It is the period that matches anything and the plus that does one or more of them.
+
 ```{r}
 str_view( envs101, ".+")
 ```
 
 This becomes helpful a bit later when we are trying to anchor the course designation (e.g., ENVS 101) at the start, ONE OR MORE THING IN THE MIDDLE, and then the end of the line with the number of hours (e.g., 3 Hours.)
 
-
 ### Positional Matching
 
-Where the items is in the string may be of importance to us.  For example, consider another line in the data that specifies ENVS101 as a prerequisite.  It does not come from a line of text that is the title of the course, it just also happens to match the 4 uppercase letters, space, and three digits pattern.
+Where the items is in the string may be of importance to us. For example, consider another line in the data that specifies ENVS101 as a prerequisite. It does not come from a line of text that is the title of the course, it just also happens to match the 4 uppercase letters, space, and three digits pattern.
 
 ```{r}
 str_view( envs[37], "[:upper:]{4}[:space:][:digit:]{3}")
 ```
 
-This is where the position in the line may be of interest.  
+This is where the position in the line may be of interest.
 
-1. To match things that occur at the beginning of the string, we prepend the pattern with the carat symbol. 
+1.  To match things that occur at the beginning of the string, we prepend the pattern with the carat symbol.
+
 ```{r}
 str_view( envs101, "^[:upper:]{4}[:space:][:digit:]{3}")
 ```
 
-This matches our first line but not a line where this pattern does not occur in the beginning of the string.  
+This matches our first line but not a line where this pattern does not occur in the beginning of the string.
+
 ```{r}
 str_view( envs[37], "^[:upper:]{4}[:space:][:digit:]{3}")
 ```
 
-2. For the end of the string, we use the dollar sign to anchor it to the end.
+2.  For the end of the string, we use the dollar sign to anchor it to the end.
+
 ```{r}
 str_view( envs[37], "[:upper:]{4}[:space:][:digit:]{3}$")
 ```
@@ -470,23 +466,19 @@ str_view( envs101, "[:upper:]{4}[:space:][:digit:]{3}$")
 
 ### Putting it Together
 
-So, now let's pull this all together and see if we can match:
-1. The course designation at the start of the line.
-2. The title
-3. The end of the line with the number of hours.
+So, now let's pull this all together and see if we can match: 1. The course designation at the start of the line. 2. The title 3. The end of the line with the number of hours.
 
 ```{r}
 str_view( envs101, "^[:upper:]{4} [:digit:]{3}.*[:digit:] Hours.$")
 ```
 
+So, there is one little extension—and this a common theme we've run across—and that has to do with the fact that programmers are a bit lazy. You can subsititue, the square-bracket-colon-word-colon-square-bracket for the following:
 
-So, there is one little extension—and this a common theme we've run across—and that has to do with the fact that programmers are a bit lazy.  You can subsititue, the square-bracket-colon-word-colon-square-bracket for the following:
+-   `[0-9]` is shorthand for `[:digits:]`.
+-   `[a-z]` is shorthand for `[:lower:]`.\
+-   `[A-Z]` is shorthand for `[:upper:]`.
 
-- `[0-9]` is shorthand for `[:digits:]`. 
-- `[a-z]` is shorthand for `[:lower:]`.  
-- `[A-Z]` is shorthand for `[:upper:]`.
-
-Which means that we can go from 
+Which means that we can go from
 
 ```{r}
 pattern <- "^[:upper:]{4} [:digit:]{3}.*[:digit:] Hours.$"
@@ -504,8 +496,7 @@ as our seach pattern.
 str_view( envs101, pattern )
 ```
 
-
-Instead of asking a single line, we need to apply this expressions to each line in the data an return the ones that match.  For this, we can use `grepl`, which returns a `TRUE/FALSE` on matching.  The tricky thing here is that the pattern comes first and the vector second (reverse from what we've been using.)
+Instead of asking a single line, we need to apply this expressions to each line in the data an return the ones that match. For this, we can use `grepl`, which returns a `TRUE/FALSE` on matching. The tricky thing here is that the pattern comes first and the vector second (reverse from what we've been using.)
 
 So for our data, we see
 
@@ -513,7 +504,7 @@ So for our data, we see
 grepl(pattern, envs )
 ```
 
-Which is great as we can use it for extracting the lines of the data that have our information.  Let's use the `grepl` as indices and grab the titles from `envs` using it.
+Which is great as we can use it for extracting the lines of the data that have our information. Let's use the `grepl` as indices and grab the titles from `envs` using it.
 
 ```{r}
 idx <- grepl( pattern, envs )
@@ -521,14 +512,14 @@ envs[idx] -> titles
 titles
 ```
 
-That looks pretty good!  We are almost there.
-
+That looks pretty good! We are almost there.
 
 ```{r}
 raw <- str_split(titles, pattern="\\.", simplify = TRUE)
 dim(raw)
 head(raw)
 ```
+
 OK, so now we can easily grab these columns and put them into a `data.frame`.
 
 ```{r}
@@ -542,7 +533,6 @@ code <- as.numeric( code )
 code 
 ```
 
-
 ```{r}
 title <- raw[,2]
 title
@@ -555,20 +545,18 @@ credits <- str_trim( credits )
 credits
 ```
 
-
 ```{r}
 data.frame( program, code, title, credits) -> df 
 summary(df)
 ```
+
 ```{r}
 head(df)
 ```
 
-
 ## Extra Credit
 
-Let's close by doing something fun.  Let's make a wordcloud of the titles from ENVS classes.
-
+Let's close by doing something fun. Let's make a wordcloud of the titles from ENVS classes.
 
 ```{r}
 str_split( title, " ")
@@ -597,10 +585,6 @@ data.frame( words, count = 1 ) |>
 tdm 
 ```
 
-
-
-
-
 ```{r}
 if( !require( wordcloud ) ) { 
   install.packages("wordcloud")
@@ -608,14 +592,11 @@ if( !require( wordcloud ) ) {
 } 
 ```
 
-
 ```{r}
 library( wordcloud )
 wordcloud( words = tdm$word, 
            freq = tdm$freq )
 ```
-
-
 
 ```{r}
 wordcloud( words = tdm$word, 
@@ -630,18 +611,12 @@ wordcloud( words = tdm$word,
            min.freq = 1 ) 
 ```
 
-
 ```{r}
 wordcloud( words = tdm$word, 
            freq = tdm$freq,
            scale=c(3.5,0.25),
            min.freq = 2 ) 
 ```
-
-
-
-
-
 
 ```{r}
 wordcloud( words = tdm$word, 
@@ -655,6 +630,3 @@ wordcloud( words = tdm$word,
 library( wordcloud2 )
 wordcloud2(data = tdm)
 ```
-
-
-
