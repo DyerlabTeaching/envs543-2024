@@ -53,6 +53,8 @@ This course is designed as a sequence of individual, stand-alone modules. Each i
 
 ## Logistics
 
+![](https://github.com/DyerlabTeaching/ENVS-543/raw/main/media/dyer.png)
+
 -   Course Instructor: Professor Rodney Dyer
 -   Email: [rjdyer\@vcu.edu](mailto://rjdyer@vcu.edu)
 -   Webpage: [rodneydyer.com](https://rodneydyer.com).
