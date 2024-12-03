@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "ENVS 543 Fall Semester 2024"
+  title: "ENVS 543: Data Literacy (2024)"
   navbar: 
     left:
     - text: Basics
