@@ -1,5 +1,5 @@
 ---
-title: "Narrative Title"
+title: "Functions in R"
 format: html
 editor: source
 ---
