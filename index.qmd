@@ -53,6 +53,27 @@ This course is designed as a sequence of individual, stand-alone modules. Each i
 
 ## Logistics
 
+This repository uses the following libraries, which you may not have installed on your computer.  When this file is rendered, it will deteremine if there are any libraries lacking and install them for you.
+
+```{r}
+#| echo: false
+libs_needed <- c( "forcats", "ggplot2", "ggrepel",
+                  "kableExtra","knitr","leaflet",
+                  "lubridate","mapproj","maps",
+                  "raster","RColorBrewer","readr", 
+                  "reshape2","sf","stringr",
+                  "tidyverse","units","wordcloud",
+                  "wordcloud2", "gt")
+new_pkgs <- installed.packages()
+new_pkgs <- names( is.na(new_pkgs[,4]))
+to_install <- setdiff( libs_needed, new_pkgs)
+
+install.packages( to_install )
+```
+
+
+
+
 ![](https://github.com/DyerlabTeaching/ENVS-543/raw/main/media/dyer.png)
 
 -   Course Instructor: Professor Rodney Dyer
