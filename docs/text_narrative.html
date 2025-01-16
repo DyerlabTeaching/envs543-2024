@@ -133,19 +133,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
-        <li class="dropdown-header">markdown_narrative.qmd</li>
-        <li class="dropdown-header">basic_data_narrative.qmd</li>
-        <li class="dropdown-header">containers_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./markdown_narrative.html">
+ <span class="dropdown-text">Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./basic_data_narrative.html">
+ <span class="dropdown-text">Basic Data Types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./containers_narrative.html">
+ <span class="dropdown-text">Basic Data Containers in R</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./tidyverse_narrative.html">
  <span class="dropdown-text">Tidyverse</span></a>
   </li>  
-        <li class="dropdown-header">functions_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./functions_narrative.html">
+ <span class="dropdown-text">Narrative Title</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./text_narrative.html">
  <span class="dropdown-text">Text Based Data</span></a>
   </li>  
-        <li class="dropdown-header">factors_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./factors_narrative.html">
+ <span class="dropdown-text">Factor Data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -159,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./ggplot_narrative.html">
- <span class="dropdown-text"><code>ggplot2</code> Graphics</span></a>
+ <span class="dropdown-text">ggplot Graphics</span></a>
   </li>  
     </ul>
   </li>
@@ -383,10 +398,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">12</span>, <span class="dv">1</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>( a,b,c, <span class="at">sep =</span> <span class="st">"-"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "1-A-12.7912652771503"  "2-B-11.8937010477833"  "3-C-11.3898231358371" 
- [4] "4-D-11.4967532001624"  "5-E-13.2612608777438"  "6-F-10.3265825835173" 
- [7] "7-G-11.1325734875453"  "8-H-11.8791143979628"  "9-I-11.5220014537577" 
-[10] "10-J-12.3076359305748"</code></pre>
+<pre><code> [1] "1-A-10.9019357329141"  "2-B-11.4865707190834"  "3-C-10.8113518560486" 
+ [4] "4-D-12.3994846951786"  "5-E-12.9257448633741"  "6-F-12.3709000230784" 
+ [7] "7-G-12.12904533439"    "8-H-12.6242103316619"  "9-I-12.7926656204066" 
+[10] "10-J-11.3774321266664"</code></pre>
 </div>
 </div>
 <p>A <code>stringr</code> version is also available—with fewer keystrokes!</p>
@@ -400,17 +415,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>( a,b,c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "1A12.7912652771503"  "2B11.8937010477833"  "3C11.3898231358371" 
- [4] "4D11.4967532001624"  "5E13.2612608777438"  "6F10.3265825835173" 
- [7] "7G11.1325734875453"  "8H11.8791143979628"  "9I11.5220014537577" 
-[10] "10J12.3076359305748"</code></pre>
+<pre><code> [1] "1A10.9019357329141"  "2B11.4865707190834"  "3C10.8113518560486" 
+ [4] "4D12.3994846951786"  "5E12.9257448633741"  "6F12.3709000230784" 
+ [7] "7G12.12904533439"    "8H12.6242103316619"  "9I12.7926656204066" 
+[10] "10J11.3774321266664"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>( a,b,c, <span class="at">sep=</span><span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "1-A-12.7912652771503"  "2-B-11.8937010477833"  "3-C-11.3898231358371" 
- [4] "4-D-11.4967532001624"  "5-E-13.2612608777438"  "6-F-10.3265825835173" 
- [7] "7-G-11.1325734875453"  "8-H-11.8791143979628"  "9-I-11.5220014537577" 
-[10] "10-J-12.3076359305748"</code></pre>
+<pre><code> [1] "1-A-10.9019357329141"  "2-B-11.4865707190834"  "3-C-10.8113518560486" 
+ [4] "4-D-12.3994846951786"  "5-E-12.9257448633741"  "6-F-12.3709000230784" 
+ [7] "7-G-12.12904533439"    "8-H-12.6242103316619"  "9-I-12.7926656204066" 
+[10] "10-J-11.3774321266664"</code></pre>
 </div>
 </div>
 </section>
@@ -1436,8 +1451,8 @@ Practical Problem
 <div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( wordcloud2 )</span>
 <span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud2</span>(<span class="at">data =</span> tdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-45081ed9a446b637dbba" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-45081ed9a446b637dbba">{"x":{"word":["Environmental","Studies","and","to","in","Introduction","Management","Outdoor","Topics","Data","Environment","Geology","Leadership","Meteorology","Oceanography","of","Science","Special","the","Wilderness","Applications","Basin","Building","Capstone","Cartography","Climatology","Conservation","Earth","Energy","Event","Experience","Facilitation","First","Group","I","II","Independent","Internship","Invasive","James","Literacy","Nature","Paths","Physical","Policy","Politics","Pollution","Practice","Programming","Research","Responder","River","Seminar","Societies:","Species","Study","Sustainable","System","Team","Visualization","Water","Writing"],"freq":[13,8,5,5,4,4,3,3,3,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":13.84615384615385,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-20c203660deb0ab01b14" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-20c203660deb0ab01b14">{"x":{"word":["Environmental","Studies","and","to","in","Introduction","Management","Outdoor","Topics","Data","Environment","Geology","Leadership","Meteorology","Oceanography","of","Science","Special","the","Wilderness","Applications","Basin","Building","Capstone","Cartography","Climatology","Conservation","Earth","Energy","Event","Experience","Facilitation","First","Group","I","II","Independent","Internship","Invasive","James","Literacy","Nature","Paths","Physical","Policy","Politics","Pollution","Practice","Programming","Research","Responder","River","Seminar","Societies:","Species","Study","Sustainable","System","Team","Visualization","Water","Writing"],"freq":[13,8,5,5,4,4,3,3,3,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":13.84615384615385,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 </div>
 

@@ -156,19 +156,34 @@ window.Quarto = {
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
-        <li class="dropdown-header">markdown_narrative.qmd</li>
-        <li class="dropdown-header">basic_data_narrative.qmd</li>
-        <li class="dropdown-header">containers_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./markdown_narrative.html">
+ <span class="dropdown-text">Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./basic_data_narrative.html">
+ <span class="dropdown-text">Basic Data Types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./containers_narrative.html">
+ <span class="dropdown-text">Basic Data Containers in R</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./tidyverse_narrative.html">
  <span class="dropdown-text">Tidyverse</span></a>
   </li>  
-        <li class="dropdown-header">functions_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./functions_narrative.html">
+ <span class="dropdown-text">Narrative Title</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./text_narrative.html">
  <span class="dropdown-text">Text Based Data</span></a>
   </li>  
-        <li class="dropdown-header">factors_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./factors_narrative.html">
+ <span class="dropdown-text">Factor Data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -182,7 +197,7 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="./ggplot_narrative.html">
- <span class="dropdown-text"><code>ggplot2</code> Graphics</span></a>
+ <span class="dropdown-text">ggplot Graphics</span></a>
   </li>  
     </ul>
   </li>
@@ -475,24 +490,24 @@ T = \sum_{i=1}^r\sum_{j=1}^c\frac{(O_{ij} - E_{ij})^2}{E_{ij}}
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Sample       Species             Site     Measurement    
- Min.   :  1   Catfish:84   Population 1:99   Min.   : 3.834  
- 1st Qu.: 38   Other  :65   Population 2:50   1st Qu.: 9.761  
- Median : 75                                  Median :11.592  
- Mean   : 75                                  Mean   :11.553  
- 3rd Qu.:112                                  3rd Qu.:13.575  
- Max.   :149                                  Max.   :18.923  </code></pre>
+ Min.   :  1   Catfish:84   Population 1:99   Min.   : 5.074  
+ 1st Qu.: 38   Other  :65   Population 2:50   1st Qu.: 9.803  
+ Median : 75                                  Median :12.076  
+ Mean   : 75                                  Mean   :12.158  
+ 3rd Qu.:112                                  3rd Qu.:14.324  
+ Max.   :149                                  Max.   :20.175  </code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sample Species         Site Measurement
-1      1 Catfish Population 1   11.841474
-2      2 Catfish Population 1   10.533547
-3      3 Catfish Population 1    8.853103
-4      4 Catfish Population 1   17.280004
-5      5 Catfish Population 1   11.536413
-6      6 Catfish Population 1   18.892669</code></pre>
+1      1 Catfish Population 1   12.298630
+2      2 Catfish Population 1   15.180844
+3      3 Catfish Population 1   16.319885
+4      4 Catfish Population 1    9.803299
+5      5 Catfish Population 1   11.980147
+6      6 Catfish Population 1    8.229584</code></pre>
 </div>
 </div>
 <p>It is easy to grab the tabular data, and configure it as we did above using the <code>table()</code> functions.</p>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ENVS 543: Data Literacy (2024)</title>
+<title>Narrative Title – ENVS 543: Data Literacy (2024)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -192,164 +226,238 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#workflow-data-analysis" id="toc-workflow-data-analysis" class="nav-link" data-scroll-target="#workflow-data-analysis">Workflow &amp; Data Analysis</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#course-content-assessment" id="toc-course-content-assessment" class="nav-link" data-scroll-target="#course-content-assessment">Course Content &amp; Assessment</a></li>
-  <li><a href="#logistics" id="toc-logistics" class="nav-link" data-scroll-target="#logistics">Logistics</a></li>
-  </ul></li>
+  <li><a href="#a-basic-function" id="toc-a-basic-function" class="nav-link active" data-scroll-target="#a-basic-function">A Basic Function</a></li>
+  <li><a href="#variable-scope" id="toc-variable-scope" class="nav-link" data-scroll-target="#variable-scope">Variable Scope</a></li>
+  <li><a href="#passing-variables." id="toc-passing-variables." class="nav-link" data-scroll-target="#passing-variables.">Passing Variables.</a></li>
+  <li><a href="#retrieving-results-from-functions" id="toc-retrieving-results-from-functions" class="nav-link" data-scroll-target="#retrieving-results-from-functions">Retrieving Results from Functions</a></li>
+  <li><a href="#creating-functions" id="toc-creating-functions" class="nav-link" data-scroll-target="#creating-functions">Creating Functions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Narrative Title</h1>
+</div>
 
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p><img src="media/DataAnimation.gif" class="img-fluid"></p>
-<p>This text is constructed from the narrative documents that supported each learning module in the ENVS 543 Environmental Data Literacy course taught at Virginia Commonwealth University in the Fall of 2024.</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <blockquote class="blockquote">
-<p>Semester course; 3 lecture hours. 3 credits. Enrollment is restricted to students with graduate standing or those with one course in statistics and permission of instructor. Develop quantitative skills for the visualization, manipulation, analysis, and communication of environmental “big data.” This course focuses on spatial environmental data analysis, interpretation, and communication, using real-time data from the Rice Rivers Center and the R statistical analysis environment.</p>
+<p>Functions allow you to compartmentalize your code, so you can use it again.</p>
 </blockquote>
-<section id="workflow-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="workflow-data-analysis">Workflow &amp; Data Analysis</h2>
-<p>To understand data analytics, one needs to recognize the entire workflow. Below is a brief graphical depiction of how analysis actualin the real world. In this class, we will work on all of the components using the open-source R language.</p>
-<ul>
-<li>Collect: Getting data from an external source into a format that you use is often the most time-consuming step in the analysis. The content of this class will provide training in data import from local, online, and database sources.<br>
-</li>
-<li>Visualize: Visualizing data is key to understanding. In the image below, notice that the variables X and Y in all the displayed data sets have equivalent means, standard deviations, and correlation up to 2 decimal places! We will emphasize visualization, both static and dynamic, throughout this class.<br>
-</li>
-<li>Transform: Pulling data into your analysis ecosystem is not sufficient. Often the data need to be reformatted and reconfigured before it is actually used.<br>
-</li>
-<li>Model: The application of models to subsets of data is often the step that takes the least amount of effort. However, the application of a model to data is not the endpoint. The model must be visualized and, many times, the underlying data or derivate data must be transformed and submitted to subsequent models.<br>
-</li>
-<li>Communicate: The effort we put into research and analyses is meaningless without effective communication of your data and findings to a broad audience. Here, we will focus on how to develop effective data communication strategies and formats.</li>
-</ul>
+<p>One of the most fundamentally valuable things with <code>R</code> is that it is totally extensible by the user community. This is why there are literally thousands of packages available for</p>
+<section id="a-basic-function" class="level2">
+<h2 class="anchored" data-anchor-id="a-basic-function">A Basic Function</h2>
+<p>A function is just a chunck of code, which is wrapped up in a <em>block</em> and given a variable name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>() { </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"bar"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>bar</code></pre>
+</div>
+</div>
+<p>The amount of code within a function can be simple like the one above or quite complex. The boundaries of the code are defined by the curly brackets.</p>
+</section>
+<section id="variable-scope" class="level2">
+<h2 class="anchored" data-anchor-id="variable-scope">Variable Scope</h2>
+<p>When we make a function, there is a notion of a <em>scope</em> for variables, which defines where variables are visible from. By default, when you start <code>R</code> you are given a Global Environment Scope that has all the variables and functions you’ve defined thus far. The image below is the one for this document at this stage of development.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/workflow.png" class="img-fluid figure-img"></p>
-<figcaption>Normal Workflow</figcaption>
+<p><img src="https://live.staticflickr.com/65535/50395012691_8844158fe9_c_d.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Main Environment in RStudio</figcaption>
 </figure>
 </div>
+<p>When we work with functions, we encapsulate code within curly-brackets. This protects their scope. Her is an example. In this function, we:</p>
+<ol type="1">
+<li>Print out the value of a variable <code>x</code><br>
+</li>
+<li>Assign values to the variables <code>x</code> and <code>z</code></li>
+<li>Print out the value of the variables <code>x</code> and <code>z</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( ) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="st">"bob"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"x ="</span>, x, <span class="st">"&amp; z ="</span>, z ,<span class="st">"inside function.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>OK, so now let’s call this function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 12 &amp; z = bob inside function.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"x ="</span>, x, <span class="st">"before function.</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 42 before function.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 12 &amp; z = bob inside function.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"x ="</span>, x, <span class="st">"after running function.</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 42 after running function.</code></pre>
+</div>
+</div>
+<p><strong>NOTE:</strong> The value of <code>x</code> was changed within the function but those changes were not reflected OUTSIDE of that function. The <em>scope</em> of the variable <code>x</code> inside <code>foo()</code> is local to that function and anything that follows its declaration within the curly brackets of the function. However, it is <em>invisible</em> outside the scope of that function. This is a ‘good thing<sup>©</sup>’ because if we had visibility of all the variables in all the functions then we would either a) quickly run out of variable names to keep them unique, or b) clobber all of our existing variables by writing over them and changing their values.</p>
+<p>Also, notice that the variable <code>z</code> that is assigned <code>bob</code> in the function is also not visible in the global environment. <em>What happens in the function, stays</em> <u>in</u> <u>the</u> <u>function</u>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "foo" "x"  </code></pre>
+</div>
+</div>
 </section>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>The purpose of this course is to help you build your data skills and to develop a foundational understanding upon which subsequent courses will build. The overarching goal here is to develop a working knowledge of the R statistical computing language and enough proficiency to import raw data and then iterate through the visualization, manipulation, and analysis steps in the creation of output that is easily communicated to a scientific audience.</p>
-<p>The content of this course is built upon the following general student learning objectives (SLO):</p>
+<section id="passing-variables." class="level2">
+<h2 class="anchored" data-anchor-id="passing-variables.">Passing Variables.</h2>
+<p>While some functions do not take any input, most require some kind of data to work with or values to start using. These variables can are passed into the function code by including them within the function parentheses.</p>
+<p>Any required variables are added within the function definition parentheses. These translate into the names of the variables used within the chunk.</p>
+<p>Here is an example with one required variable, <code>x</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( x ) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And it can be called by either naming the variable explicity or not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>( <span class="at">x =</span> <span class="dv">23</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>( <span class="dv">42</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 42</code></pre>
+</div>
+</div>
+<p>However, if you require a variable to be passed and it is not given, it will result in an error.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in foo(): argument "x" is missing, with no default</code></pre>
+</div>
+</div>
+<p>You can get around this by making a <code>default</code> value for the variable, which is specified in the function definition as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( <span class="at">x =</span> <span class="st">"Dr Dyer is my favorite professor"</span> ) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then if the individual does not fill in</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Dr Dyer is my favorite professor"</code></pre>
+</div>
+</div>
+</section>
+<section id="retrieving-results-from-functions" class="level2">
+<h2 class="anchored" data-anchor-id="retrieving-results-from-functions">Retrieving Results from Functions</h2>
+<p>Similarly, many functions we write will return something to the user who is calling it. By default, a function that just does something like print some message or make some plot will return <code>NULL</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( <span class="at">name =</span> <span class="st">"Alice"</span>) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(name, <span class="st">"is in the house."</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Alice is in the house.</code></pre>
+</div>
+</div>
+<p>But if I try to assign a variable the results of the function, I get <code>NULL</code> as the value returned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">foo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Alice is in the house.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "NULL"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<p>If you want to return something to the user, you need to be explicit and use the <code>return()</code> function to pass back the variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( <span class="at">name =</span> <span class="st">"Alice"</span>) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  response <span class="ot">&lt;-</span> <span class="fu">paste</span>( name, <span class="st">"is in the house."</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>( response )</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>who_is_in_the_house <span class="ot">&lt;-</span> <span class="fu">foo</span>()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>who_is_in_the_house</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Alice is in the house."</code></pre>
+</div>
+</div>
+<p>You can only return <em>one</em> item but it can be a <code>list</code> a <code>data.frame</code> or any other <code>R</code> object.</p>
+</section>
+<section id="creating-functions" class="level1">
+<h1>Creating Functions</h1>
+<p>You can create functions for small things to be used in a single document or they can be larger more general functions that can be used all the time.</p>
+<p>If you are going to be using a function in a single markdown document, define it in its own code chunk and then from that point down the document, it will be available to use (like we’ve done in this document).</p>
+<p>However, if you are going to be calling a function from more than one sole Markdown document, it is probably good practice to put it in its own file. R script files contain ONLY code and this is where you should put it.</p>
+<p>Make a new R Script file by selecting <em>File -&gt; New File -&gt; R Script</em>.</p>
+<p>As an example, I made entered the code shown below into this script file and then saved it as <code>summarize_levels.R</code> <strong>in the same directory as my project</strong> (this last part is important).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://live.staticflickr.com/65535/50398439551_f549a80586_c_d.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Simple code to make summaries from a data frame as an example function in its own file.</figcaption>
+</figure>
+</div>
+<p>This code has a few sections to it. The top 9 rows are comments. These kinds of comments are denoted by a hashtag and a single quote. You do not <em>need</em> to have these comments in the file but when you start making a lot of function, each in their file, if you follow these instructions you can autogenerate the R help files so you (and others who may be using your code) can look at the help file.</p>
+<ol type="1">
+<li>The first line has a brief description of what the script does.</li>
+<li>The next set of lines indicate <em>Sections</em> that can be put into the help file. These sections are denoted by an @-sign followed by a name (there are many more than the three used here).
 <ul>
-<li>SLO 1: Identity, manipulate, and summarize numerical, categorical, ordinal, logical, date, string, and spatial data types.</li>
-<li>SLO 2: Create habits and took the knowledge to support reproducible research.</li>
-<li>SLO 3: Create an informative and effective graphical display of various data types of suitable quality for inclusion in published manuscripts.</li>
-<li>SLO 4: Effectively choose appropriate statistical models based on the types of data at hand and the questions being addressed.</li>
-<li>SLO 5: Demonstrate a general understanding of spatial data types and the creation of both appropriate static and dynamic maps.</li>
-</ul>
-</section>
-<section id="course-content-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="course-content-assessment">Course Content &amp; Assessment</h2>
-<p>This course is designed as a sequence of individual, stand-alone modules. Each is self-contained and includes a lecture, slides, a larger narrative document, a video demonstration, and an assessment.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 50%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Deliverable</th>
-<th>Details</th>
-<th>SLO</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Welcome &amp; Logistics</td>
-<td>Setting up the logistics for the class, getting R, RStudio, and Quarto installed on each of your machines, and getting a tour of the IDE.</td>
-<td>NA</td>
-</tr>
-<tr class="even">
-<td>Git, Github, &amp; Markdown</td>
-<td>Establish a functional working knowledge of git as a collaborative tool for reproducible research and begin working with Markdown as an output for data analysis.</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>Data Types &amp; Containers</td>
-<td>Understanding the fundamental data types and containers within R and how to import, work with easily, and export raw data.</td>
-<td>1, 2</td>
-</tr>
-<tr class="even">
-<td>Tidyverse</td>
-<td>Data manipulation. Like a boss.</td>
-<td>1, 2</td>
-</tr>
-<tr class="odd">
-<td>Basic Graphics</td>
-<td>Normal graphics built into the R system.</td>
-<td>2, 3</td>
-</tr>
-<tr class="even">
-<td>Graphics that DON’T suck</td>
-<td>Hello publication quality graphics, using the grammar of graphics approach</td>
-<td>2, 3</td>
-</tr>
-<tr class="odd">
-<td>Points, Lines, &amp; Polygons</td>
-<td>Spatial data in vector format vectors</td>
-<td>3, 5</td>
-</tr>
-<tr class="even">
-<td>Raster Data</td>
-<td>Continuously distributed spatial data</td>
-<td>3, 5</td>
-</tr>
-<tr class="odd">
-<td>Statistical Confidence</td>
-<td>Base understanding of statistical inferences and the properties of sampled data</td>
-<td>1, 2, 4</td>
-</tr>
-<tr class="even">
-<td>Binomial Inferences</td>
-<td>Analyses based upon expectations.</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Categorical~f(Categorical)</td>
-<td>Contingency table and categorical count data</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>Continuous~f(Categorical)</td>
-<td>Analysis of Variance (or equality of means)</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Continuous~f(Continuous)</td>
-<td>Correlation &amp; Regression approaches</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>Categorical~f(Continuous)</td>
-<td>Logistic regression</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="logistics" class="level2">
-<h2 class="anchored" data-anchor-id="logistics">Logistics</h2>
-<p>This repository uses the following libraries, which you may not have installed on your computer. When this file is rendered, it will deteremine if there are any libraries lacking and install them for you.</p>
-<p><img src="https://github.com/DyerlabTeaching/ENVS-543/raw/main/media/dyer.png" class="img-fluid"></p>
-<ul>
-<li>Course Instructor: Professor Rodney Dyer</li>
-<li>Email: <a href="mailto://rjdyer@vcu.edu">rjdyer@vcu.edu</a></li>
-<li>Webpage: <a href="https://rodneydyer.com">rodneydyer.com</a>.</li>
-</ul>
+<li><span class="citation" data-cites="description">@description</span> - A more robust description of what the function does.<br>
+</li>
+<li><span class="citation" data-cites="param">@param</span> A listing of each parameter sent to the function and its description.<br>
+</li>
+<li><span class="citation" data-cites="return">@return</span> What the function returns to the user.</li>
+</ul></li>
+<li>The function body where it is actually defined. Notice, I name the function and the script file the exact same so it is easy for you to know what is in each file.</li>
+</ol>
+<p>Since the function is located in another file, we need to ask <code>R</code> to load in the source of the code. This is done using the <code>source()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"summarize_levels.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Do this once and it will load the function in the current Global Environment.</p>
+<p><img src="https://live.staticflickr.com/65535/50397831453_b83377def0_c_d.jpg" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_levels</span>( iris, <span class="st">"Sepal.Length"</span>, <span class="st">"Species"</span>, mean )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Species Sepal.Length
+1     setosa        5.006
+2 versicolor        5.936
+3  virginica        6.588</code></pre>
+</div>
+</div>
+<p>Once you a few functions together, you can put them together into a library (left as an advanced topic).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

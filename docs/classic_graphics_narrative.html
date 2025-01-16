@@ -156,19 +156,34 @@ window.Quarto = {
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
-        <li class="dropdown-header">markdown_narrative.qmd</li>
-        <li class="dropdown-header">basic_data_narrative.qmd</li>
-        <li class="dropdown-header">containers_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./markdown_narrative.html">
+ <span class="dropdown-text">Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./basic_data_narrative.html">
+ <span class="dropdown-text">Basic Data Types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./containers_narrative.html">
+ <span class="dropdown-text">Basic Data Containers in R</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./tidyverse_narrative.html">
  <span class="dropdown-text">Tidyverse</span></a>
   </li>  
-        <li class="dropdown-header">functions_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./functions_narrative.html">
+ <span class="dropdown-text">Narrative Title</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./text_narrative.html">
  <span class="dropdown-text">Text Based Data</span></a>
   </li>  
-        <li class="dropdown-header">factors_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./factors_narrative.html">
+ <span class="dropdown-text">Factor Data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -182,7 +197,7 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="./ggplot_narrative.html">
- <span class="dropdown-text"><code>ggplot2</code> Graphics</span></a>
+ <span class="dropdown-text">ggplot Graphics</span></a>
   </li>  
     </ul>
   </li>
@@ -604,8 +619,8 @@ iris$Species: virginica
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>randomColors <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="fu">colors</span>(), <span class="at">size =</span> <span class="fu">nrow</span>(iris) )</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(randomColors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "olivedrab2"   "grey35"       "peachpuff1"   "lightyellow4" "azure"       
-[6] "grey13"      </code></pre>
+<pre><code>[1] "gray79"     "palegreen2" "sienna3"    "gray56"     "peru"      
+[6] "grey64"    </code></pre>
 </div>
 </div>
 <p>To use these colors, you can specify them by name for either all the elements</p>

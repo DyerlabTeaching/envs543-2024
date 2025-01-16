@@ -156,19 +156,34 @@ window.Quarto = {
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
-        <li class="dropdown-header">markdown_narrative.qmd</li>
-        <li class="dropdown-header">basic_data_narrative.qmd</li>
-        <li class="dropdown-header">containers_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./markdown_narrative.html">
+ <span class="dropdown-text">Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./basic_data_narrative.html">
+ <span class="dropdown-text">Basic Data Types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./containers_narrative.html">
+ <span class="dropdown-text">Basic Data Containers in R</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./tidyverse_narrative.html">
  <span class="dropdown-text">Tidyverse</span></a>
   </li>  
-        <li class="dropdown-header">functions_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./functions_narrative.html">
+ <span class="dropdown-text">Narrative Title</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./text_narrative.html">
  <span class="dropdown-text">Text Based Data</span></a>
   </li>  
-        <li class="dropdown-header">factors_narrative.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./factors_narrative.html">
+ <span class="dropdown-text">Factor Data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -182,7 +197,7 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="./ggplot_narrative.html">
- <span class="dropdown-text"><code>ggplot2</code> Graphics</span></a>
+ <span class="dropdown-text">ggplot Graphics</span></a>
   </li>  
     </ul>
   </li>
@@ -303,20 +318,20 @@ window.Quarto = {
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-[1,]   14   10    7   15   17   12   15
-[2,]    9    8   13   13    9   14    8
-[3,]   11    7   15    8   11   10   15
-[4,]   14    9   14   10    8   13   12
-[5,]   15   14    7   13   18   11   11
-[6,]    6   12   13   11    8    7   11
-[7,]   13   10    7   14    8   14   15</code></pre>
+[1,]    9   11   11    9    6    9   13
+[2,]   11   14   11   12   13    7   12
+[3,]   16   12   10   11   10   14    8
+[4,]   14   10   17   10   15   20   10
+[5,]   15   10   10    5   17   13   11
+[6,]   14   12    7    8   16    7    8
+[7,]    8   15   13   11   11   12   13</code></pre>
 </div>
 </div>
 <p>While we haven’t used matrices much thus far, it is a lot like a <code>data.frame</code> with respect to getting and setting values using numerical indices. For example, the value of the 3rd row and 5th column is:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>,<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11</code></pre>
+<pre><code>[1] 10</code></pre>
 </div>
 </div>
 <p>To convert this set of data, as a matrix, into a geospatially referenced <code>raster()</code> object we do the following:</p>
@@ -331,7 +346,7 @@ extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 crs        : NA 
 source     : memory
 names      : layer 
-values     : 6, 18  (min, max)</code></pre>
+values     : 5, 20  (min, max)</code></pre>
 </div>
 </div>
 <p>Notice that when I plot it out, it does not show the data, but a summary of the data along with some key data about the contents, including:<br>
